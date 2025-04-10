@@ -25,7 +25,7 @@ router.post("/getUserByUname",
         if (!errors.isEmpty()) {
             return res.status(400).json({
                 success: false,
-                errors: errors.array(),
+                message: errors.array(),
             });
         }
         next();
@@ -37,7 +37,7 @@ router.post("/getUserByUname",
             if (!username) {
                 return res.status(404).json({
                     success: false,
-                    errors: "Parameter Missing"
+                    message: "Parameter Missing"
                 });
             }
             const response = await axios.get(process.env.API_URL || "https://jsonplaceholder.typicode.com/users");
@@ -46,22 +46,46 @@ router.post("/getUserByUname",
             if (data) {
                 return res.status(200).json({
                     success: true,
-                    result: data
+                    result: data,
+                    message: "Result Fetched!S"
                 });
             } else {
                 return res.status(200).json({
                     success: true,
-                    errors: "User not found",
+                    message: "User not found",
                     result: null
                 });
             }
         } catch (error) {
             return res.status(500).json({
                 success: false,
-                errors: error?.message || "Something went wrong"
+                message: error?.message || "Something went wrong"
             });
         }
     }
 );
+
+router.get("/getUsers", async (req, res, next) => {
+    try {
+        const response = await axios.get(process.env.API_URL || "https://jsonplaceholder.typicode.com/users");
+        if (response?.data) {
+            return res.status(200).json({
+                success: true,
+                message: "Records found!",
+                result: response?.data || []
+            });
+        } else {
+            return res.status(404).json({
+                success: true,
+                message: "No records found"
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error?.message || "Something went wrong"
+        });
+    }
+})
 
 module.exports = router;
