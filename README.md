@@ -31,8 +31,6 @@ To set up the project locally:
   payload: {
     "username": "Leopoldo_Corkery"
    }   
-   /api/getUsers
-   payload : N/A
 
 6. Testing with Postman
  To test the POST /api/getUserByUname endpoint:
