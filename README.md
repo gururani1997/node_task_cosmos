@@ -31,6 +31,8 @@ To set up the project locally:
   payload: {
     "username": "Leopoldo_Corkery"
    }   
+   /api/getUsers
+   payload : N/A
 
 6. Testing with Postman
  To test the POST /api/getUserByUname endpoint:
@@ -50,6 +52,17 @@ To set up the project locally:
    }
    
  6.Click Send to view the response.
+
+ To test the GET /api/getUsers endpoint:
+
+ 1.Open Postman and create a new request.
+ 
+ 2.Set the request type to GET.
+ 
+ 3.Enter the following URL:
+  http://localhost:3000/api/getUsers
+
+ 4..Click Send to view the response.
 
 Technologies Used:
 Node.js: JavaScript runtime for building server-side applications.
